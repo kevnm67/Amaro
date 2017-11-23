@@ -295,7 +295,11 @@ class AmaroLibModule(types.ModuleType):
 
         if lower:
             result = self.smartLowerCase(result)
-
+        
+        if len(result) < 1:
+            print('variableNameForString result is too short. Returning id {}'.format(self.smartLowerCase(id_)))
+            return self.smartLowerCase(id_)
+            
         return result
 
     def smartLowerCase(self, s):
@@ -304,7 +308,7 @@ class AmaroLibModule(types.ModuleType):
         if len(s) > 2 and s[1].isupper():
             return s
 
-        return s[0].lower() + s[1:]
+        return s[:1].lower() + s[1:]
 
     def die(self, message):
         print('error: ' + message, file = sys.stderr)
